@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace ReqnrollProject1.Model
 {
@@ -10,5 +6,6 @@ namespace ReqnrollProject1.Model
     {
         public string username; 
         public string password;
+        
     }
 }

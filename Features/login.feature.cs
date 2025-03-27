@@ -118,6 +118,15 @@ this.ScenarioInitialize(scenarioInfo);
 #line 12
  await testRunner.ThenAsync("I should Navigate to the Product Page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
+#line 13
+ await testRunner.AndAsync("I Add Two products to basket", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 14
+ await testRunner.ThenAsync("confirm the total number of products in the basket", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 15
+ await testRunner.AndAsync("Logout.", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
             }
             await this.ScenarioCleanupAsync();
         }
@@ -131,7 +140,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "tag2"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Login with Table Credentials", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 16
+#line 20
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -141,7 +150,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 17
+#line 21
  await testRunner.GivenAsync("I have accessed the Swag Labs Login Page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
                 global::Reqnroll.Table table2 = new global::Reqnroll.Table(new string[] {
@@ -150,14 +159,23 @@ this.ScenarioInitialize(scenarioInfo);
                 table2.AddRow(new string[] {
                             "standard_user",
                             "secret_sauce"});
-#line 18
+#line 22
  await testRunner.WhenAsync("I enter the Login Credential Details", ((string)(null)), table2, "When ");
 #line hidden
-#line 21
+#line 25
  await testRunner.AndAsync("I Click Login Button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 22
+#line 26
  await testRunner.ThenAsync("I should Navigate to the Product Page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 27
+ await testRunner.AndAsync("I Add Two products to basket", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 28
+ await testRunner.ThenAsync("confirm the total number of products in the basket", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 29
+ await testRunner.AndAsync("Logout.", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
@@ -172,7 +190,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "tag3"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Login", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 25
+#line 32
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -182,17 +200,26 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 26
+#line 33
  await testRunner.GivenAsync("I have accessed the Swag Labs Login Page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 27
+#line 34
  await testRunner.WhenAsync("I enter a \'standard_user\' UserName and \'secret_sauce\' Password", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 28
+#line 35
  await testRunner.AndAsync("I Click Login Button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 29
+#line 36
  await testRunner.ThenAsync("I should Navigate to the Product Page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 37
+ await testRunner.AndAsync("I Add Two products to basket", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 38
+ await testRunner.ThenAsync("confirm the total number of products in the basket", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 39
+ await testRunner.AndAsync("Logout.", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

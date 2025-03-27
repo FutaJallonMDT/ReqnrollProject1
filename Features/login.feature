@@ -10,6 +10,10 @@ Scenario: Login with ModelTableData Credentials
 	| standard_user | secret_sauce |
 	And I Click Login Button
 	Then I should Navigate to the Product Page
+	And I Add Two products to basket
+	Then confirm the total number of products in the basket
+	And Logout.
+	
 
 
 	@tag2
@@ -20,6 +24,9 @@ Scenario: Login with Table Credentials
 	| standard_user | secret_sauce |
 	And I Click Login Button
 	Then I should Navigate to the Product Page
+	And I Add Two products to basket
+	Then confirm the total number of products in the basket
+	And Logout.
 
 	@tag3
 Scenario: Login
@@ -27,3 +34,6 @@ Scenario: Login
 	When I enter a 'standard_user' UserName and 'secret_sauce' Password
 	And I Click Login Button
 	Then I should Navigate to the Product Page
+	And I Add Two products to basket
+	Then confirm the total number of products in the basket
+	And Logout.

@@ -18,7 +18,7 @@ namespace ReqnrollProject1.BaseHooks
         [BeforeScenario]
         public void BeforeScenarioWithTag()
         {
-            driver.InitializedDriver();
+             driver.InitializedDriver();
             _ObjectContainer.RegisterInstanceAs(driver.driver);
         }
 
