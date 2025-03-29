@@ -1,5 +1,4 @@
 ﻿
-
 namespace ReqnrollProject1.Model
 {
     public class MyTableData

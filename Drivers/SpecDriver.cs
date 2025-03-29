@@ -4,16 +4,13 @@ using ReqnrollProject1.Support;
 
 namespace ReqnrollProject1.Drivers
 {
-
     public class SpecDriver
-    {
-        
+    {      
         public IWebDriver driver;
         ChromeOptions options = new ChromeOptions();
-
         public void InitializedDriver() => driver = StartBrowser();
 
-        public IWebDriver StartBrowser()
+        private IWebDriver StartBrowser()
         {
             options.AddArguments("--start-maximized");
             driver = new ChromeDriver(options);
@@ -21,8 +18,6 @@ namespace ReqnrollProject1.Drivers
             driver.Navigate().GoToUrl(DemoUrl.sauceDemoUrl);
             return driver;
         }
-
-
         public void CloseBrowser()
         {
             driver.Quit();

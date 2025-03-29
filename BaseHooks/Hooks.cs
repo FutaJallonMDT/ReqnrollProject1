@@ -9,7 +9,6 @@ namespace ReqnrollProject1.BaseHooks
     {
        public SpecDriver driver;
        public IObjectContainer _ObjectContainer;
-
         public Hooks (SpecDriver _driver, IObjectContainer container) 
         {
             driver = _driver;
@@ -21,8 +20,6 @@ namespace ReqnrollProject1.BaseHooks
              driver.InitializedDriver();
             _ObjectContainer.RegisterInstanceAs(driver.driver);
         }
-
-        
 
         [AfterScenario]
         public void AfterScenario()

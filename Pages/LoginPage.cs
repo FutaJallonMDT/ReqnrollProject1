@@ -8,9 +8,7 @@ namespace ReqnrollProject1.Pages
 {
     public class LoginPage
     {
-       
-        
-        private IWebDriver driver;
+        IWebDriver driver;
 
         public LoginPage(IWebDriver driver)
         {
@@ -20,13 +18,12 @@ namespace ReqnrollProject1.Pages
         private IWebElement User => driver.FindElement(By.Id("user-name"));
         private IWebElement Pass => driver.FindElement(By.Id("password"));
         private IWebElement LoginBtn => driver.FindElement(By.Id("login-button"));
-
         public string sauceDemoUrl { get; set; }
+
 
         public void NavigateToSite()
         {
            sauceDemoUrl = DemoUrl.sauceDemoUrl;
-
         }
         public void EnterUserNameAndPassword(string username, string pass)
         { 

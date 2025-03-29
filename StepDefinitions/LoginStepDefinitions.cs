@@ -1,10 +1,12 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using Reqnroll;
 using Reqnroll.BoDi;
 using ReqnrollProject1.Drivers;
 using ReqnrollProject1.Model;
 using ReqnrollProject1.Pages;
+using ReqnrollProject1.Support;
 
 namespace ReqnrollProject1.StepDefinitions
 {
@@ -14,19 +16,24 @@ namespace ReqnrollProject1.StepDefinitions
     {
         LoginPage lpage;
         ProductPage ppage;
+        CartPage cartPage;
+       
         IWebDriver driver;
         public LoginStepDefinitions(IObjectContainer container)
         {
             driver = container.Resolve<IWebDriver>();
             lpage = new LoginPage(driver);
             ppage = new ProductPage(driver);
+            cartPage = new CartPage(driver);
         }
 
         [Given("I have accessed the Swag Labs Login Page")]
         public void GivenIHaveAccessedTheSwagLabsLoginPage()
         {
             lpage.NavigateToSite();
+            Assert.That(driver.Url.Contains("https://www.saucedemo.com/"));
         }
+
 
         [When("I enter a {string} UserName and {string} Password")]
         public void WhenIEnterAUserNameAndPassword(string user, string pass)
@@ -63,19 +70,34 @@ namespace ReqnrollProject1.StepDefinitions
             Assert.That(ppage.IsproductHeaderDisplayed(), Is.EqualTo(true), "Not displayed");
         }
 
-        [Then("I Add Two products to basket")]
-        public void ThenIAddTwoProductsToBasket()
+        [When("I Add Two products to baskets")]
+        public void WhenIAddTwoProductsToBaskets(DataTable dataTable)
         {
-            ppage.AddProductinCarts();
-            Assert.That(ppage.IsSauceBackPackNameDisplayed(), Is.EqualTo(true));
-            Assert.That(ppage.IsProductBikeNameDisplayed(),Is.EqualTo(true));
+            ppage.AddProductinCarts(
+                dataTable.Rows[0]["product1"],
+                dataTable.Rows[0]["product2"]);
         }
 
-        [Then("confirm the total number of products in the basket")]
-        public void ThenConfirmTheTotalNumberOfProductsInTheBasket()
+        [When("I Click on the Shopping Cart to view the Basket")]
+        public void WhenIClickOnTheShoppingCartToViewTheBasket()
         {
-            string productCount = ppage.getproductcountDisplayed();
-            Assert.That(productCount, Is.EqualTo(productCount), "Product count in the basket is not 2.");
+            ppage.ViewBasket();
+        }
+
+        [Then("confirm the total number of products in the basket is {int}")]
+        public void ThenConfirmTheTotalNumberOfProductsInTheBasketIs(int Expectedcount)
+        {
+            int actualCount = cartPage.GetProductCounts();
+            Assert.That(actualCount, Is.EqualTo(Expectedcount), $"Product count in the basket is not {Expectedcount}. Actual: {actualCount}");
+        }
+
+        [Then("I Verify {int} Product Names in the baskets as")]
+        public void ThenIVerifyProductNamesInTheBasketsAs(int p0, DataTable dataTable)
+        {
+          
+            var product1 = dataTable.Rows[0]["product1"];
+            var product2 = dataTable.Rows[0]["product2"];
+            cartPage.GetProductNamesinCart(product1, product2);
 
         }
 
