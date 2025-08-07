@@ -1,12 +1,8 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using Reqnroll;
 using Reqnroll.BoDi;
-using ReqnrollProject1.Drivers;
 using ReqnrollProject1.Model;
 using ReqnrollProject1.Pages;
-using ReqnrollProject1.Support;
 
 namespace ReqnrollProject1.StepDefinitions
 {
@@ -17,6 +13,8 @@ namespace ReqnrollProject1.StepDefinitions
         LoginPage lpage;
         ProductPage ppage;
         CartPage cartPage;
+        CheckoutPage checkoutPage;
+        CheckOutOverviewPage COverviewPage;
        
         IWebDriver driver;
         public LoginStepDefinitions(IObjectContainer container)
@@ -25,15 +23,16 @@ namespace ReqnrollProject1.StepDefinitions
             lpage = new LoginPage(driver);
             ppage = new ProductPage(driver);
             cartPage = new CartPage(driver);
+            checkoutPage = new CheckoutPage(driver);
+            COverviewPage = new CheckOutOverviewPage(driver);
         }
 
         [Given("I have accessed the Swag Labs Login Page")]
         public void GivenIHaveAccessedTheSwagLabsLoginPage()
-        {
-            lpage.NavigateToSite();
-            Assert.That(driver.Url.Contains("https://www.saucedemo.com/"));
+      
+        {   
+            Assert.That(driver.Url.Contains(lpage.GetUrl()));
         }
-
 
         [When("I enter a {string} UserName and {string} Password")]
         public void WhenIEnterAUserNameAndPassword(string user, string pass)
@@ -41,6 +40,13 @@ namespace ReqnrollProject1.StepDefinitions
         
                 lpage.EnterUserNameAndPassword(user,pass);
         }
+
+        [When("I enter the login username and password details")]
+        public void WhenIEnterTheLoginUsernameAndPasswordDetails()
+        {
+            lpage.EnterCredtialwithData(Data.Parameters.USER.Userdetails, Data.Parameters.USER.PasswordDetails);
+        }
+
 
         [When("I enter the Login Credential Details")]
         public void WhenIEnterTheLoginCredentialDetails(DataTable dataTable)
@@ -73,9 +79,7 @@ namespace ReqnrollProject1.StepDefinitions
         [When("I Add Two products to baskets")]
         public void WhenIAddTwoProductsToBaskets(DataTable dataTable)
         {
-            ppage.AddProductinCarts(
-                dataTable.Rows[0]["product1"],
-                dataTable.Rows[0]["product2"]);
+            ppage.AddProductinCarts(dataTable.Rows[0]["product1"],dataTable.Rows[0]["product2"]);
         }
 
         [When("I Click on the Shopping Cart to view the Basket")]
@@ -99,6 +103,61 @@ namespace ReqnrollProject1.StepDefinitions
             var product2 = dataTable.Rows[0]["product2"];
             cartPage.GetProductNamesinCart(product1, product2);
 
+        }
+
+        [When("I add the following products")]
+        public void WhenIAddTheFollowingProducts(DataTable dataTable)
+        {
+            cartPage.AddTwoItemToCart(dataTable);
+        }
+
+        [Then("I Click Checkout Button")]
+        public void ThenIClickCheckoutButton()
+        {
+            cartPage.ClickCheckOutBtn();
+        }
+
+        [Then("Confirm i am on the Checkout Page")]
+        public void ThenConfirmIAmOnTheCheckoutPage()
+        {
+            Assert.That(checkoutPage.IsCheckoutTitleHeaderDisplayed(), Is.EqualTo(true), "Not Displayed");
+        }
+
+        [Then("I Enter the Checkout Information")]
+        public void ThenIEnterTheCheckoutInformation(DataTable dataTable)
+        {
+            checkoutPage.FillCustomersFormDetails(dataTable.Rows[0]["FNAME"], dataTable.Rows[0]["LNAME"], dataTable.Rows[0]["ZIPCODE"]);
+        }
+
+        [Then("Click On the Continue Button")]
+        public void ThenClickOnTheContinueButton()
+        {
+            checkoutPage.ClickContinueBtn();
+        }
+
+        [Then("Confirm I am on Checkout Overview Page")]
+        public void ThenConfirmIAmOnCheckoutOverviewPage()
+        {
+            Assert.That(COverviewPage.IsCheckoutOverviewHeaderDisplayed(), Is.EqualTo(true), "Not Displayed");
+        }
+
+        [Then("Confirm the total number of products in the Checkout is {int}")]
+        public void ThenConfirmTheTotalNumberOfProductsInTheCheckoutIs(int Expectedcount)
+        {
+            int actualCount = COverviewPage.GetProductCounts();
+            Assert.That(actualCount, Is.EqualTo(Expectedcount), $"Product count in the basket is not {Expectedcount}. Actual: {actualCount}");
+        }
+
+        [Then("Click Finish Button")]
+        public void ThenClickFinishButton()
+        {
+            COverviewPage.ClickFinishBtn();
+        }
+
+        [Then("Confirm the Order is Complete")]
+        public void ThenConfirmTheOrderIsComplete()
+        {
+            Assert.That(COverviewPage.IsCheckoutOverviewHeaderDisplayed(), Is.EqualTo(true), "Not Displayed");
         }
 
         [Then("Logout.")]

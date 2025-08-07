@@ -1,7 +1,5 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using ReqnrollProject1.Support;
-using static OpenQA.Selenium.BiDi.Modules.Script.RemoteValue.WindowProxy;
 
 
 namespace ReqnrollProject1.Pages
@@ -18,13 +16,14 @@ namespace ReqnrollProject1.Pages
         private IWebElement User => driver.FindElement(By.Id("user-name"));
         private IWebElement Pass => driver.FindElement(By.Id("password"));
         private IWebElement LoginBtn => driver.FindElement(By.Id("login-button"));
-        public string sauceDemoUrl { get; set; }
+      
 
 
-        public void NavigateToSite()
+        public string GetUrl()
         {
-           sauceDemoUrl = DemoUrl.sauceDemoUrl;
+            return DemoUrl.sauceDemoUrl; 
         }
+
         public void EnterUserNameAndPassword(string username, string pass)
         { 
             {
@@ -37,6 +36,12 @@ namespace ReqnrollProject1.Pages
         {
             User.SendKeys(user);
             Pass.SendKeys(pass);
+        }
+
+        public void EnterCredtialwithData(string u, string p)
+        {
+            User.SendKeys(u);
+            Pass.SendKeys(p);
         }
 
         public void ClickLoginbtn()

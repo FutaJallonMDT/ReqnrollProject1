@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReqnrollProject1
+namespace ReqnrollProject1.Support
 {
     public class JsonData
     {

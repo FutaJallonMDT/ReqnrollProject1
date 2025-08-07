@@ -10,17 +10,16 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
+using Reqnroll;
 namespace ReqnrollProject1.Features
 {
-    using Reqnroll;
-    using System;
-    using System.Linq;
     
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "2.0.0.0")]
-    [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "2.0.0.0")]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("login")]
+    [NUnit.Framework.FixtureLifeCycleAttribute(NUnit.Framework.LifeCycle.InstancePerTestCase)]
     public partial class LoginFeature
     {
         
@@ -28,41 +27,63 @@ namespace ReqnrollProject1.Features
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "login", "A short summary of the feature", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "login", "A short summary of the feature", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
         
 #line 1 "login.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
-        public static async System.Threading.Tasks.Task FeatureSetupAsync()
+        public static async global::System.Threading.Tasks.Task FeatureSetupAsync()
         {
         }
         
         [NUnit.Framework.OneTimeTearDownAttribute()]
-        public static async System.Threading.Tasks.Task FeatureTearDownAsync()
+        public static async global::System.Threading.Tasks.Task FeatureTearDownAsync()
         {
         }
         
         [NUnit.Framework.SetUpAttribute()]
-        public async System.Threading.Tasks.Task TestInitializeAsync()
+        public async global::System.Threading.Tasks.Task TestInitializeAsync()
         {
             testRunner = global::Reqnroll.TestRunnerManager.GetTestRunnerForAssembly(featureHint: featureInfo);
-            if (((testRunner.FeatureContext != null) 
-                        && (testRunner.FeatureContext.FeatureInfo.Equals(featureInfo) == false)))
+            try
             {
-                await testRunner.OnFeatureEndAsync();
+                if (((testRunner.FeatureContext != null) 
+                            && (testRunner.FeatureContext.FeatureInfo.Equals(featureInfo) == false)))
+                {
+                    await testRunner.OnFeatureEndAsync();
+                }
             }
-            if ((testRunner.FeatureContext == null))
+            finally
             {
-                await testRunner.OnFeatureStartAsync(featureInfo);
+                if (((testRunner.FeatureContext != null) 
+                            && testRunner.FeatureContext.BeforeFeatureHookFailed))
+                {
+                    throw new global::Reqnroll.ReqnrollException("Scenario skipped because of previous before feature hook error");
+                }
+                if ((testRunner.FeatureContext == null))
+                {
+                    await testRunner.OnFeatureStartAsync(featureInfo);
+                }
             }
         }
         
         [NUnit.Framework.TearDownAttribute()]
-        public async System.Threading.Tasks.Task TestTearDownAsync()
+        public async global::System.Threading.Tasks.Task TestTearDownAsync()
         {
-            await testRunner.OnScenarioEndAsync();
-            global::Reqnroll.TestRunnerManager.ReleaseTestRunner(testRunner);
+            if ((testRunner == null))
+            {
+                return;
+            }
+            try
+            {
+                await testRunner.OnScenarioEndAsync();
+            }
+            finally
+            {
+                global::Reqnroll.TestRunnerManager.ReleaseTestRunner(testRunner);
+                testRunner = null;
+            }
         }
         
         public void ScenarioInitialize(global::Reqnroll.ScenarioInfo scenarioInfo)
@@ -71,25 +92,25 @@ namespace ReqnrollProject1.Features
             testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
         }
         
-        public async System.Threading.Tasks.Task ScenarioStartAsync()
+        public async global::System.Threading.Tasks.Task ScenarioStartAsync()
         {
             await testRunner.OnScenarioStartAsync();
         }
         
-        public async System.Threading.Tasks.Task ScenarioCleanupAsync()
+        public async global::System.Threading.Tasks.Task ScenarioCleanupAsync()
         {
             await testRunner.CollectScenarioErrorsAsync();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Login with ModelTableData Credentials")]
+        [NUnit.Framework.DescriptionAttribute("Logins")]
         [NUnit.Framework.CategoryAttribute("tag1")]
-        public async System.Threading.Tasks.Task LoginWithModelTableDataCredentials()
+        public async global::System.Threading.Tasks.Task Logins()
         {
             string[] tagsOfScenario = new string[] {
                     "tag1"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Login with ModelTableData Credentials", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Logins", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -103,47 +124,164 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  await testRunner.GivenAsync("I have accessed the Swag Labs Login Page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-                global::Reqnroll.Table table1 = new global::Reqnroll.Table(new string[] {
-                            "username",
-                            "password"});
-                table1.AddRow(new string[] {
-                            "standard_user",
-                            "secret_sauce"});
 #line 8
- await testRunner.WhenAsync("I enter the Credential Details", ((string)(null)), table1, "When ");
+ await testRunner.WhenAsync("I enter a \'standard_user\' UserName and \'secret_sauce\' Password", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 9
  await testRunner.AndAsync("I Click Login Button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 10
  await testRunner.ThenAsync("I should Navigate to the Product Page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-                global::Reqnroll.Table table2 = new global::Reqnroll.Table(new string[] {
-                            "product1",
-                            "product2"});
-                table2.AddRow(new string[] {
-                            "Sauce Labs Backpack",
+                global::Reqnroll.Table table1 = new global::Reqnroll.Table(new string[] {
+                            "productName"});
+                table1.AddRow(new string[] {
+                            "Sauce Labs Backpack"});
+                table1.AddRow(new string[] {
                             "Sauce Labs Bike Light"});
-#line 13
- await testRunner.WhenAsync("I Add Two products to baskets", ((string)(null)), table2, "When ");
+#line 11
+ await testRunner.WhenAsync("I add the following products", ((string)(null)), table1, "When ");
 #line hidden
-#line 16
+#line 15
  await testRunner.AndAsync("I Click on the Shopping Cart to view the Basket", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 17
+#line 16
  await testRunner.ThenAsync("confirm the total number of products in the basket is 2", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
+#line 17
+ await testRunner.AndAsync("I Click Checkout Button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 18
+ await testRunner.ThenAsync("Confirm i am on the Checkout Page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+                global::Reqnroll.Table table2 = new global::Reqnroll.Table(new string[] {
+                            "FNAME",
+                            "LNAME",
+                            "ZIPCODE"});
+                table2.AddRow(new string[] {
+                            "Owen",
+                            "Olaye",
+                            "M24 6XS"});
+#line 19
+ await testRunner.AndAsync("I Enter the Checkout Information", ((string)(null)), table2, "And ");
+#line hidden
+#line 22
+   await testRunner.AndAsync("Click On the Continue Button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 23
+   await testRunner.ThenAsync("Confirm I am on Checkout Overview Page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 24
+   await testRunner.ThenAsync("Confirm the total number of products in the Checkout is 2", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 25
+   await testRunner.AndAsync("Click Finish Button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 26
+   await testRunner.ThenAsync("Confirm the Order is Complete", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 27
+   await testRunner.AndAsync("Logout.", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Login with ModelTableData Credentials")]
+        [NUnit.Framework.CategoryAttribute("tag2")]
+        public async global::System.Threading.Tasks.Task LoginWithModelTableDataCredentials()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "tag2"};
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Login with ModelTableData Credentials", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 31
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 32
+ await testRunner.GivenAsync("I have accessed the Swag Labs Login Page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
                 global::Reqnroll.Table table3 = new global::Reqnroll.Table(new string[] {
+                            "username",
+                            "password"});
+                table3.AddRow(new string[] {
+                            "standard_user",
+                            "secret_sauce"});
+#line 33
+ await testRunner.WhenAsync("I enter the Credential Details", ((string)(null)), table3, "When ");
+#line hidden
+#line 36
+ await testRunner.AndAsync("I Click Login Button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 37
+ await testRunner.ThenAsync("I should Navigate to the Product Page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+                global::Reqnroll.Table table4 = new global::Reqnroll.Table(new string[] {
                             "product1",
                             "product2"});
-                table3.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "Sauce Labs Backpack",
                             "Sauce Labs Bike Light"});
-#line 18
- await testRunner.AndAsync("I Verify 2 Product Names in the baskets as", ((string)(null)), table3, "And ");
+#line 38
+ await testRunner.WhenAsync("I Add Two products to baskets", ((string)(null)), table4, "When ");
 #line hidden
-#line 21
- await testRunner.AndAsync("Logout.", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line 41
+ await testRunner.AndAsync("I Click on the Shopping Cart to view the Basket", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 42
+ await testRunner.ThenAsync("confirm the total number of products in the basket is 2", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+                global::Reqnroll.Table table5 = new global::Reqnroll.Table(new string[] {
+                            "product1",
+                            "product2"});
+                table5.AddRow(new string[] {
+                            "Sauce Labs Backpack",
+                            "Sauce Labs Bike Light"});
+#line 43
+ await testRunner.AndAsync("I Verify 2 Product Names in the baskets as", ((string)(null)), table5, "And ");
+#line hidden
+#line 46
+ await testRunner.AndAsync("I Click Checkout Button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 47
+ await testRunner.ThenAsync("Confirm i am on the Checkout Page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+                global::Reqnroll.Table table6 = new global::Reqnroll.Table(new string[] {
+                            "FNAME",
+                            "LNAME",
+                            "ZIPCODE"});
+                table6.AddRow(new string[] {
+                            "Owen",
+                            "Olaye",
+                            "M24 6XS"});
+#line 48
+ await testRunner.AndAsync("I Enter the Checkout Information", ((string)(null)), table6, "And ");
+#line hidden
+#line 51
+   await testRunner.AndAsync("Click On the Continue Button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 52
+   await testRunner.ThenAsync("Confirm I am on Checkout Overview Page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 53
+   await testRunner.ThenAsync("Confirm the total number of products in the Checkout is 2", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 54
+   await testRunner.AndAsync("Click Finish Button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 55
+   await testRunner.ThenAsync("Confirm the Order is Complete", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 56
+   await testRunner.AndAsync("Logout.", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
